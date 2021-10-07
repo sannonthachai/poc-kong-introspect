@@ -1,0 +1,8 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: auth-custom-plugin
+config:
+  introspection_endpoint: http://auth-service.default.svc.cluster.local/restricted
+  token_header: Authorization
+plugin: custom-auth

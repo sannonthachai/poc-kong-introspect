@@ -1,0 +1,11 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: kong-acl-plugin
+  annotations:
+    kubernetes.io/ingress.class: kong
+config:
+  allow:
+  - kong-group-1
+  hide_groups_header: true
+plugin: acl

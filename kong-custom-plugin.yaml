@@ -1,0 +1,27 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: read-jwt-token
+  labels:
+    global: "true"
+disabled: false
+config:
+  functions:
+  - return function()
+      local ngx = require "ngx.base64"
+      local json = require "cjson"
+      local jwt = kong.request.get_header("authorization")
+
+      local header, data, sig = string.match(jwt, "(.*)%.(.*)%.(.*)")
+
+      local dcd = ngx.decode_base64url(data)
+      local jdcd = json.decode(dcd)
+
+      -- now do something with your jwt payload.
+
+      for k,v in pairs(jdcd) do
+        print(v)
+      end
+
+    end
+plugin: post-function

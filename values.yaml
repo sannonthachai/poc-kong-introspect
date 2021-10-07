@@ -1,0 +1,4 @@
+plugins:
+  configMaps:
+  - name: kong-plugin-custom-auth
+    pluginName: custom-auth
